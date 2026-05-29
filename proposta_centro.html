@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mais Cliente, Menos Esforço | Wallace Assis</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--preto:#0a0a0a;--branco:#f0ebe3;--dourado:#c9a84c;--cinza:#111;--texto:#b0a89a;--verde:#2d6a2d;--verde-claro:#f0f7f0;--laranja:#8a3a00;--laranja-claro:#fff5ee}
+body{background:var(--preto);color:var(--branco);font-family:'DM Sans',sans-serif;min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+.tag{display:inline-block;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dourado);border:1px solid var(--dourado);padding:4px 14px;border-radius:100px;margin-bottom:24px;font-family:'DM Sans',sans-serif}
+h1{font-family:'Playfair Display',serif;font-size:clamp(34px,8vw,54px);font-weight:900;line-height:1.05;margin-bottom:6px}
+h1 span{color:var(--dourado)}
+.sub{font-size:15px;color:var(--texto);line-height:1.7;margin-bottom:36px}
+.divider{height:1px;background:linear-gradient(to right,#c9a84c55,transparent);margin:40px 0}
+.sec-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dourado);font-family:'DM Sans',sans-serif;margin-bottom:14px;display:block}
+h2{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,32px);margin-bottom:12px}
+p{font-size:14px;color:var(--texto);line-height:1.8;margin-bottom:10px}
+strong{color:var(--branco);font-weight:600}
+
+/* HERO */
+.hero{padding:52px 0 0}
+
+/* TABELAS */
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;font-family:'DM Sans',sans-serif}
+thead tr{background:var(--preto)}
+thead th{color:var(--dourado);font-weight:700;letter-spacing:1px;font-size:11px;padding:12px 14px;text-align:left;border-bottom:1px solid var(--dourado)}
+tbody tr:nth-child(odd){background:#111}
+tbody tr:nth-child(even){background:#0d0d0d}
+tbody td{padding:11px 14px;color:var(--texto);border-bottom:1px solid #1e1e1e}
+.td-verde{color:#5ecf7e;font-weight:700}
+.td-dourado{color:var(--dourado);font-weight:700}
+
+/* BOX */
+.box{border-radius:12px;padding:20px;margin:16px 0;font-size:14px;line-height:1.7;font-family:'DM Sans',sans-serif}
+.box-verde{background:#0d1f0d;border:1px solid #2d6a2d;color:#5ecf7e}
+.box-laranja{background:#1a0d00;border:1px solid #c9a84c;color:#e8b96a}
+.box-cinza{background:#111;border:1px solid #222}
+
+/* CHECKLIST */
+.checklist{list-style:none;margin:12px 0}
+.checklist li{font-size:13px;color:var(--texto);display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.checklist li span:first-child{color:var(--dourado);flex-shrink:0}
+
+/* CARDS ISCA */
+.isca-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.isca-card{background:#111;border-radius:10px;padding:16px;border:1px solid #2a2a2a}
+.isca-neg{font-size:12px;font-weight:700;color:var(--dourado);margin-bottom:6px;font-family:'DM Sans',sans-serif}
+.isca-ex{font-size:12px;color:var(--texto);line-height:1.5;font-family:'DM Sans',sans-serif}
+
+/* PACOTES */
+.pacotes{display:flex;flex-direction:column;gap:10px;margin:16px 0}
+.pacote{background:#111;border-radius:12px;padding:18px 16px;border:1px solid #1e1e1e}
+.pacote-info{}
+.pacote-nome{font-size:14px;font-weight:700;color:var(--branco);margin-bottom:4px;font-family:'DM Sans',sans-serif}
+.pacote-desc{font-size:12px;color:var(--texto);font-family:'DM Sans',sans-serif}
+.pacote-preco{font-size:16px;font-weight:700;color:var(--dourado);font-family:'DM Sans',sans-serif;margin-top:8px}
+
+/* CTA */
+.cta-box{background:var(--preto);border:1px solid #1e1e1e;border-radius:16px;padding:40px 24px;text-align:center;margin:40px 0 0}
+.cta-box h2{margin-bottom:12px}
+.cta-box p{margin-bottom:28px}
+.btn{display:inline-block;background:var(--dourado);color:var(--preto);font-weight:700;font-size:14px;padding:15px 36px;border-radius:100px;text-decoration:none;font-family:'DM Sans',sans-serif;transition:opacity .2s}
+.btn:hover{opacity:.85}
+
+/* FOOTER */
+footer{text-align:center;padding:28px 0 40px;font-size:11px;color:#333;font-family:'DM Sans',sans-serif;letter-spacing:1px}
+
+@media(max-width:480px){.isca-grid{grid-template-columns:1fr}.pacote{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="tag">Proposta Comercial · Wallace Assis</div>
+    <h1>Mais Cliente,<br><span>Menos Esforço.</span></h1>
+    <p class="sub">Você já tem um bom negócio. O que falta é que as pessoas certas saibam disso. Vídeo é a forma mais rápida, barata e eficiente de fazer isso acontecer — e eu cuido de tudo para você não precisar se preocupar com nada.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ROI -->
+  <section>
+    <span class="sec-label">Por que vale a pena</span>
+    <h2>Quanto custa um cliente novo para você?</h2>
+    <p>Antes de falar de preço, veja quanto você ganha de volta com apenas 3 clientes novos por mês:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Seu negócio</th><th>Ticket médio</th><th>3 clientes novos</th></tr></thead>
+        <tbody>
+          <tr><td>Clínica / Consultório</td><td>R$ 200</td><td class="td-verde">R$ 600/mês</td></tr>
+          <tr><td>Restaurante</td><td>R$ 100</td><td class="td-verde">R$ 300/mês</td></tr>
+          <tr><td>Salão de beleza</td><td>R$ 150</td><td class="td-verde">R$ 450/mês</td></tr>
+          <tr><td>Academia / Studio</td><td>R$ 150</td><td class="td-verde">R$ 450/mês</td></tr>
+          <tr><td>Loja / Comércio</td><td>R$ 200</td><td class="td-verde">R$ 600/mês</td></tr>
+          <tr><td>Barbearia premium</td><td>R$ 80</td><td class="td-verde">R$ 240/mês</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="box box-verde">💰 <strong>O pacote Starter custa R$ 200/mês.</strong> Para uma clínica ou negócio de centro, 2 clientes novos já pagam o investimento. O restante é lucro — todo mês.</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PRODUTO ISCA -->
+  <section>
+    <span class="sec-label">O segredo para vender mais rápido</span>
+    <h2>A oferta que ninguém recusa.</h2>
+    <p>Vídeo atrai atenção. Mas para transformar atenção em cliente, precisamos trabalhar juntos uma <strong>ação irresistível</strong> — o que chamamos de produto isca.</p>
+    <p>O produto isca é algo do seu negócio com um benefício tão bom que a pessoa sente que seria um erro não aproveitar. Ela vai até você, conhece seu espaço, experimenta o que você faz — e vira cliente recorrente.</p>
+    <div class="isca-grid">
+      <div class="isca-card"><div class="isca-neg">✂️ Barbearia</div><div class="isca-ex">1ª barba grátis na semana de lançamento</div></div>
+      <div class="isca-card"><div class="isca-neg">🍽️ Restaurante</div><div class="isca-ex">Sobremesa grátis no almoço acima de R$ 30</div></div>
+      <div class="isca-card"><div class="isca-neg">💇 Salão de Beleza</div><div class="isca-ex">Hidratação grátis no 1º agendamento</div></div>
+      <div class="isca-card"><div class="isca-neg">🏋️ Academia</div><div class="isca-ex">1ª semana grátis sem compromisso</div></div>
+      <div class="isca-card"><div class="isca-neg">🏪 Loja / Comércio</div><div class="isca-ex">20% de desconto na 1ª compra acima de R$ 50</div></div>
+      <div class="isca-card"><div class="isca-neg">💅 Studio / Estética</div><div class="isca-ex">Design de sobrancelha grátis na 1ª visita</div></div>
+    </div>
+    <div class="box box-laranja">🎯 <strong>O vídeo divulga a oferta. A oferta traz o cliente. O cliente satisfeito volta.</strong> É assim que construímos recorrência juntos.</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PACOTES -->
+  <section>
+    <span class="sec-label">Pacotes e investimento</span>
+    <h2>Comece pequeno. Cresça com resultado.</h2>
+    <p>Não é preciso começar com tudo. Muitos clientes começaram por um único vídeo e, depois de ver o resultado, quiseram mais.</p>
+    <div class="pacotes">
+      <div class="pacote"><div class="pacote-nome">Vídeo Avulso</div><div class="pacote-desc">1 vídeo mostrando seu serviço ou produto</div><div class="pacote-preco">R$ 120</div></div>
+      <div class="pacote"><div class="pacote-nome">Starter</div><div class="pacote-desc">2 vídeos por mês — ideal para começar</div><div class="pacote-preco">R$ 200/mês</div></div>
+      <div class="pacote"><div class="pacote-nome">Essencial</div><div class="pacote-desc">4 vídeos por mês — consistência que gera resultado</div><div class="pacote-preco">R$ 350/mês</div></div>
+      <div class="pacote"><div class="pacote-nome">Premium</div><div class="pacote-desc">8 vídeos por mês + estratégia de conteúdo</div><div class="pacote-preco">R$ 600/mês</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PILOTO -->
+  <section>
+    <span class="sec-label">Antes de qualquer contrato</span>
+    <h2>Veja o resultado antes de decidir.</h2>
+    <p>Falar é fácil. Por isso eu não peço que você confie em mim sem ver nada primeiro. Vou produzir o primeiro vídeo do seu negócio completamente de graça. Você assiste, mostra para quem quiser, usa como quiser. Se gostar, a gente conversa. Se não gostar, não deve absolutamente nada.</p>
+    <div class="box box-cinza">
+      <ul class="checklist">
+        <li><span>✦</span><span>Roteiro personalizado para o seu negócio</span></li>
+        <li><span>✦</span><span>Gravação e edição profissional</span></li>
+        <li><span>✦</span><span>Pronto para postar no Instagram ou YouTube</span></li>
+        <li><span>✦</span><span>Sem contrato. Sem pressão. Sem risco.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h2>Pronto para ter mais clientes?</h2>
+    <p>Me conta o que seu negócio faz. Eu te mostro como o vídeo pode trabalhar por você.</p>
+    <a class="btn" href="https://wa.me/5521982910639?text=Ol%C3%A1%20Wallace%21%20Vi%20sua%20proposta%20e%20quero%20saber%20mais." target="_blank">💬 Falar com Wallace agora</a>
+  </div>
+
+  <footer>Wallace Assis · (21) 98291-0639 · Nova Iguaçu / RJ</footer>
+
+</div>
+</body>
+</html>
