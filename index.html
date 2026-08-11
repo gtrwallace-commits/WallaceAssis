@@ -1,312 +1,181 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wallace Assis · Produção de Vídeo</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--preto:#080808;--branco:#f0ebe3;--dourado:#c9a84c;--cinza:#111;--texto:#b0a89a}
-body{background:var(--preto);color:var(--branco);font-family:'DM Sans',sans-serif;min-height:100vh}
-.container{max-width:680px;margin:0 auto;padding:0 20px}
-.tag{display:inline-block;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dourado);border:1px solid var(--dourado);padding:4px 14px;border-radius:100px;margin-bottom:28px}
-h1{font-family:'Playfair Display',serif;font-size:clamp(32px,8vw,52px);font-weight:900;line-height:1.05;margin-bottom:16px}
-h1 span{color:var(--dourado)}
-.subtitle{font-size:15px;color:var(--texto);line-height:1.7;margin-bottom:36px}
-.divider{height:1px;background:linear-gradient(to right,#c9a84c55,transparent);margin:40px 0}
-.section-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dourado);margin-bottom:16px;display:block}
-.sobre{margin-bottom:44px}
-.sobre p{font-size:15px;line-height:1.8;color:var(--texto)}
-.sobre p strong{color:var(--branco);font-weight:600}
-.hero{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:18px}
-.foto{width:82px;height:82px;border-radius:50%;border:2px solid var(--dourado);overflow:hidden;flex-shrink:0;box-shadow:0 0 0 5px #1a1200}
-.foto img{width:100%;height:100%;object-fit:cover;object-position:center top}
-/* VÍDEOS */
-.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:44px}
-.video-card{cursor:pointer;border-radius:10px;overflow:hidden;border:1px solid #1e1e1e;transition:transform .2s,border-color .2s}
-.video-card:hover{transform:translateY(-3px);border-color:#c9a84c55}
-.video-thumb{position:relative}
-.video-thumb img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
-.play-btn{position:absolute;inset:0;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
-.play-btn span{width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.95);display:flex;align-items:center;justify-content:center;font-size:14px;padding-left:4px}
-.video-title{padding:10px 12px;background:#111;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.empty{background:#111;border-radius:12px;padding:40px;text-align:center;border:1px dashed #2a2a2a;color:#444;font-size:14px;margin-bottom:44px}
-/* SERVIÇOS */
-.servicos-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:44px}
-.servico{background:var(--cinza);border-radius:10px;padding:18px 16px;border:1px solid #1e1e1e}
-.servico-icon{font-size:22px;margin-bottom:8px}
-.servico-nome{font-size:13px;font-weight:600;margin-bottom:6px}
-.servico-desc{font-size:12px;color:var(--texto);line-height:1.5}
-/* PILOTO */
-.piloto{background:linear-gradient(135deg,#1a1200,#0d0d00);border-radius:16px;padding:28px 24px;border:1px solid #3a2e10;margin-bottom:44px}
-.badge{background:var(--dourado);color:var(--preto);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:100px}
-.piloto h3{font-family:'Playfair Display',serif;font-size:22px;margin:14px 0 8px}
-.piloto p{font-size:14px;color:var(--texto);line-height:1.7;margin-bottom:16px}
-.check-item{display:flex;gap:10px;margin-bottom:8px;font-size:13px;color:var(--texto)}
-.check-item span:first-child{color:var(--dourado);flex-shrink:0}
-/* CTA */
-.cta{text-align:center;padding:36px 20px;border:1px solid #1e1e1e;border-radius:16px;margin-bottom:48px;background:#0d0d0d}
-.cta h2{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:10px}
-.cta p{font-size:14px;color:var(--texto);margin-bottom:24px;line-height:1.6}
-.btn{display:inline-block;background:var(--dourado);color:var(--preto);font-weight:700;font-size:14px;padding:14px 32px;border-radius:100px;text-decoration:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .2s}
-.btn:hover{opacity:.85}
-/* FOOTER */
-footer{text-align:center;padding:24px 0 40px;font-size:11px;color:#333;letter-spacing:1px}
-footer button{background:none;border:none;color:#222;font-size:11px;cursor:pointer;margin-top:12px;display:block;margin:12px auto 0;font-family:'DM Sans',sans-serif}
-/* PLAYER */
-#player{display:none;position:fixed;inset:0;background:#000;z-index:1000;flex-direction:column}
-#player.active{display:flex}
-#player-header{padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #1a1a1a}
-#player-back{background:none;border:none;color:var(--dourado);font-size:24px;cursor:pointer}
-#player-title{font-size:14px;color:var(--branco)}
-#player-body{flex:1;display:flex;align-items:center;justify-content:center;padding:20px}
-#player-body iframe{width:100%;max-width:800px;aspect-ratio:16/9;border:none;border-radius:12px}
-/* ADMIN */
-#admin{display:none;position:fixed;inset:0;background:var(--preto);z-index:1000;overflow-y:auto}
-#admin.active{display:block}
-.admin-inner{max-width:460px;margin:0 auto;padding:32px 20px}
-.admin-header{display:flex;align-items:center;gap:12px;margin-bottom:28px}
-.back-btn{background:none;border:none;color:var(--dourado);font-size:24px;cursor:pointer}
-.admin-card{background:#111;border-radius:14px;padding:22px;border:1px solid #222;margin-bottom:20px}
-.admin-input{width:100%;padding:12px 14px;border-radius:8px;border:1px solid #2a2a2a;background:#0a0a0a;color:var(--branco);font-size:14px;font-family:'DM Sans',sans-serif;margin-bottom:10px}
-.admin-input:focus{outline:none;border-color:var(--dourado)}
-.admin-btn{width:100%;background:var(--dourado);color:var(--preto);border:none;border-radius:8px;padding:14px;font-weight:700;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif}
-.err{color:#e05555;font-size:13px;margin-bottom:10px}
-.ok{color:#5ecf7e;font-size:13px;margin-top:10px;text-align:center}
-.hint{color:#444;font-size:11px;margin-top:14px;line-height:1.6}
-.hint a{color:var(--dourado)}
-.vid-item{background:#111;border-radius:10px;padding:12px 14px;border:1px solid #222;margin-bottom:10px;display:flex;align-items:center;gap:12px}
-.vid-item img{width:64px;height:42px;border-radius:6px;object-fit:cover;flex-shrink:0}
-.vid-item span{color:var(--branco);font-size:13px;flex:1}
-.vid-remove{background:none;border:none;color:#555;font-size:20px;cursor:pointer;padding:0 4px}
-@media(max-width:480px){.servicos-grid{grid-template-columns:1fr}.hero{flex-direction:column;text-align:center}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <title>Wallace Assis | Estratégia de Conteúdo</title>
+  <meta name="description" content="Organize sua comunicação, posicionamento e conteúdo para que o seu Instagram mostre o profissional que você realmente é." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0b0b0b;
+      --surface:#131313;
+      --text:#f4f1ea;
+      --muted:#aaa59c;
+      --accent:#d6b768;
+      --border:#262626;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Manrope',sans-serif;
+      line-height:1.6;
+      min-height:100vh;
+    }
+    .wrap{width:min(100% - 36px,760px);margin:0 auto}
+    .hero{padding:72px 0 48px}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--accent);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1.8px;
+      font-weight:700;
+      margin-bottom:24px;
+    }
+    .eyebrow:before{content:'';width:28px;height:1px;background:var(--accent)}
+    h1{
+      font-size:clamp(40px,9vw,72px);
+      line-height:1.02;
+      letter-spacing:-2.7px;
+      max-width:720px;
+      margin-bottom:24px;
+    }
+    h1 span{color:var(--accent)}
+    .lead{
+      max-width:620px;
+      color:var(--muted);
+      font-size:clamp(17px,3.9vw,21px);
+      line-height:1.65;
+      margin-bottom:34px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      background:var(--accent);
+      color:#0a0a0a;
+      text-decoration:none;
+      font-weight:800;
+      border-radius:999px;
+      padding:16px 24px;
+      min-height:56px;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+    .note{font-size:12px;color:#77736c;margin-top:14px}
+    .section{padding:58px 0;border-top:1px solid var(--border)}
+    .section-label{font-size:12px;text-transform:uppercase;letter-spacing:1.7px;color:var(--accent);font-weight:700;margin-bottom:16px}
+    h2{font-size:clamp(28px,6vw,42px);line-height:1.15;letter-spacing:-1.4px;margin-bottom:22px}
+    .statement{font-size:clamp(20px,4.8vw,30px);line-height:1.35;max-width:670px}
+    .statement strong{color:var(--accent)}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px}
+    .num{color:var(--accent);font-weight:800;font-size:12px;letter-spacing:1px;margin-bottom:24px}
+    .card h3{font-size:18px;margin-bottom:8px}
+    .card p{font-size:14px;color:var(--muted)}
+    .final{padding:68px 0 92px;text-align:center}
+    .final h2{max-width:600px;margin:0 auto 18px}
+    .final p{color:var(--muted);max-width:500px;margin:0 auto 30px}
+    .footer{border-top:1px solid var(--border);padding:24px 0 34px;color:#77736c;font-size:12px;text-align:center}
+    .float{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:10;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      background:#25D366;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      font-size:26px;
+      box-shadow:0 14px 32px rgba(0,0,0,.35);
+    }
+    @media(max-width:680px){
+      .hero{padding-top:54px}
+      h1{letter-spacing:-1.8px}
+      .cards{grid-template-columns:1fr}
+      .btn{width:100%}
+      .final{text-align:left}
+      .final h2,.final p{margin-left:0;margin-right:0}
+    }
+  </style>
 </head>
 <body>
-
-<!-- PLAYER -->
-<div id="player">
-  <div id="player-header">
-    <button id="player-back" onclick="closePlayer()">←</button>
-    <span id="player-title"></span>
-  </div>
-  <div id="player-body">
-    <iframe id="player-frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
-</div>
-
-<!-- ADMIN -->
-<div id="admin">
-  <div class="admin-inner">
-    <div class="admin-header">
-      <button class="back-btn" onclick="closeAdmin()">←</button>
-      <span style="font-size:18px;font-weight:600">Meus Vídeos</span>
-    </div>
-    <div id="admin-login" class="admin-card">
-      <p style="color:var(--texto);font-size:14px;margin-bottom:16px">Digite sua senha:</p>
-      <input type="password" id="admin-pass" class="admin-input" placeholder="Senha" onkeydown="if(event.key==='Enter')loginAdmin()">
-      <div id="login-err" class="err" style="display:none"></div>
-      <button class="admin-btn" onclick="loginAdmin()">Entrar</button>
-    </div>
-    <div id="admin-panel" style="display:none">
-      <div class="admin-card">
-        <span class="section-label">Adicionar vídeo</span>
-        <input type="text" id="vid-url" class="admin-input" placeholder="Cole o link (YouTube ou Streamable)">
-        <input type="text" id="vid-title" class="admin-input" placeholder="Título (ex: Clínica R.A - Institucional)">
-      <select id="vid-category" class="admin-input" style="margin-bottom:10px">
-        <option value="institucional">🎬 Institucional</option>
-        <option value="autoridade">🎙️ Autoridade</option>
-        <option value="depoimento">⭐ Depoimento</option>
-        <option value="reels">📱 Reels & Shorts</option>
-      </select>
-        <div id="add-err" class="err" style="display:none"></div>
-        <button class="admin-btn" onclick="addVideo()">+ Adicionar</button>
-        <div id="add-ok" class="ok" style="display:none">✓ Salvo!</div>
-        <p class="hint">💡 Para subir direto: acesse <a href="https://streamable.com" target="_blank">streamable.com</a>, arraste o vídeo e cole o link aqui.</p>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Wallace Assis</div>
+        <h1>Seu Instagram mostra o <span>profissional</span> que você realmente é?</h1>
+        <p class="lead">Eu organizo sua comunicação, posicionamento e conteúdo para que as pessoas entendam com clareza por que escolher você.</p>
+        <a class="btn" href="https://wa.me/5521982910639?text=Ol%C3%A1%2C%20Wallace.%20Vim%20pelo%20seu%20Instagram%20e%20quero%20entender%20como%20melhorar%20minha%20comunica%C3%A7%C3%A3o." target="_blank" rel="noopener">Quero melhorar meu Instagram →</a>
+        <div class="note">Atendimento direto pelo WhatsApp.</div>
       </div>
-      <span class="section-label" id="vid-count">Vídeos</span>
-      <div id="vid-list"></div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<!-- PORTFÓLIO -->
-<div class="container" style="padding-top:52px">
+    <section class="section">
+      <div class="wrap">
+        <div class="section-label">O problema</div>
+        <p class="statement">Você pode ser excelente no que faz. Mas, se isso <strong>não está claro no seu perfil</strong>, quem chega até você talvez nunca perceba.</p>
+      </div>
+    </section>
 
-  <div class="tag">Conteúdo estratégico · Nova Iguaçu / RJ</div>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-label">Como eu trabalho</div>
+        <h2>Clareza antes da câmera.</h2>
+        <div class="cards">
+          <article class="card">
+            <div class="num">01</div>
+            <h3>Diagnóstico</h3>
+            <p>Entendo seu perfil, negócio, público e o que hoje está dificultando a percepção de valor.</p>
+          </article>
+          <article class="card">
+            <div class="num">02</div>
+            <h3>Estratégia</h3>
+            <p>Organizo posicionamento, mensagem e direção de conteúdo para sua comunicação ficar clara.</p>
+          </article>
+          <article class="card">
+            <div class="num">03</div>
+            <h3>Execução</h3>
+            <p>Transformamos a estratégia em conteúdos e vídeos capazes de comunicar melhor o seu valor.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <div class="hero">
-    <div class="foto">
-      <img src="data:image/jpeg;base64,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" alt="Wallace Assis">
-    </div>
-    <h1>Seu negócio tem história.<br>Está na hora de<br><span>contar ela.</span></h1>
-  </div>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-label">Uma ideia simples</div>
+        <p class="statement"><strong>Não é sobre postar mais.</strong> É sobre fazer seu perfil comunicar melhor.</p>
+      </div>
+    </section>
 
-  <p class="subtitle">Antes de comprar, as pessoas desejam. Antes de desejar, elas precisam se ver no que você oferece. Eu crio conteúdo que desperta esse desejo e transforma atenção em cliente real.</p>
+    <section class="final">
+      <div class="wrap">
+        <h2>Quer entender o que precisa mudar no seu perfil?</h2>
+        <p>Me chama no WhatsApp. Eu quero primeiro entender onde você está e o que precisa ficar mais claro na sua comunicação.</p>
+        <a class="btn" href="https://wa.me/5521982910639?text=Ol%C3%A1%2C%20Wallace.%20Quero%20entender%20o%20que%20precisa%20mudar%20no%20meu%20Instagram." target="_blank" rel="noopener">Falar com Wallace no WhatsApp →</a>
+      </div>
+    </section>
+  </main>
 
-  <div class="divider"></div>
-
-  <div class="sobre">
-    <span class="section-label">Sobre</span>
-    <p>Sua empresa já tem produto bom, atendimento bom, cliente satisfeito. O que falta é aparecer. <strong>Wallace Assis</strong> cuida disso — grava, edita e entrega pronto para você postar. Você não precisa entender nada de vídeo pra isso funcionar.</p>
-  </div>
-
-  <div style="margin-bottom:44px">
-    <span class="section-label">Trabalhos</span>
-    <div id="category-tabs" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px"></div>
-    <div id="videos-container"></div>
-  </div>
-
-  <div style="margin-bottom:44px">
-    <span class="section-label">O que produzo</span>
-    <div class="servicos-grid">
-      <div class="servico"><div class="servico-icon">🎬</div><div class="servico-nome">Vídeo Institucional</div><div class="servico-desc">Conta a história da sua marca de forma que gera confiança e autoridade.</div></div>
-      <div class="servico"><div class="servico-icon">📱</div><div class="servico-nome">Reels & Shorts</div><div class="servico-desc">Conteúdo curto que gera identificação e atrai novos clientes todo dia.</div></div>
-      <div class="servico"><div class="servico-icon">🎙️</div><div class="servico-nome">Conteúdo de Autoridade</div><div class="servico-desc">Você e sua equipe se posicionando como referência no seu mercado.</div></div>
-      <div class="servico"><div class="servico-icon">⭐</div><div class="servico-nome">Depoimentos</div><div class="servico-desc">A voz de quem já confia em você convencendo quem ainda não te conhece.</div></div>
-    </div>
-  </div>
-
-  <div class="piloto">
-    <span class="badge">Oferta de entrada</span>
-    <h3>Veja antes de decidir</h3>
-    <p>Eu produzo o primeiro vídeo do seu negócio sem cobrar nada. Você vê como sua marca pode ser percebida de forma diferente. Se fizer sentido, a gente conversa sobre continuar. Se não fizer, não deve nada.</p>
-    <div class="check-item"><span>✦</span><span>Roteiro com estratégia de storytelling</span></div>
-    <div class="check-item"><span>✦</span><span>Gravação e edição com identidade da sua marca</span></div>
-    <div class="check-item"><span>✦</span><span>Conteúdo pronto para gerar conexão e venda</span></div>
-    <div class="check-item"><span>✦</span><span>Sem contrato, sem pressão</span></div>
-  </div>
-
-  <div class="cta">
-    <h2>Sua marca merece ser lembrada.</h2>
-    <p>Me conta a história do seu negócio. Eu mostro como transformar isso em conteúdo que conecta e vende.</p>
-    <a class="btn" href="https://wa.me/5521982910639?text=Ol%C3%A1%20Wallace%21%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20saber%20mais." target="_blank">💬 Contar minha história</a>
-  </div>
-
-  <footer>
-    <p>© Wallace Assis · Nova Iguaçu / RJ · Produção de Vídeo</p>
-    <button onclick="openAdmin()">⚙ admin</button>
+  <footer class="footer">
+    <div class="wrap">© 2026 Wallace Assis · Estratégia de Comunicação e Conteúdo</div>
   </footer>
 
-</div>
-
-<script>
-const VIDEOS_KEY = 'wallace_videos';
-let videos = [];
-
-function loadVideos() {
-  try { videos = JSON.parse(localStorage.getItem(VIDEOS_KEY)) || [{ type:'youtube', id:'k-FrVWD53_o', title:'CP Amora e Aroma - Institucional', category:'institucional' }]; }
-  catch { videos = [{ type:'youtube', id:'k-FrVWD53_o', title:'Trabalho 1' }]; }
-  renderVideos();
-}
-
-function saveVideos() {
-  localStorage.setItem(VIDEOS_KEY, JSON.stringify(videos));
-}
-
-function getThumb(v) {
-  return v.type === 'youtube'
-    ? 'https://img.youtube.com/vi/' + v.id + '/hqdefault.jpg'
-    : 'https://cdn-cf-east.streamable.com/image/' + v.id + '.jpg';
-}
-
-function getEmbed(v) {
-  return v.type === 'youtube'
-    ? 'https://www.youtube.com/embed/' + v.id + '?autoplay=1'
-    : 'https://streamable.com/e/' + v.id + '?autoplay=1';
-}
-
-function parseVideo(url) {
-  const yt = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
-  if (yt) return { type:'youtube', id:yt[1] };
-  const st = url.match(/streamable\.com\/([a-zA-Z0-9]+)/);
-  if (st) return { type:'streamable', id:st[1] };
-  return null;
-}
-
-function renderVideos() {
-  const c = document.getElementById('videos-container');
-  if (!videos.length) { c.innerHTML = '<div class="empty">Nenhum vídeo publicado ainda.</div>'; return; }
-  const grid = document.createElement('div');
-  grid.className = 'videos-grid';
-  videos.forEach(v => {
-    grid.innerHTML += '<div class="video-card" onclick="openPlayer(\'' + v.id + '\',\'' + v.type + '\',\'' + v.title.replace(/'/g,"\'") + '\')">' +
-      '<div class="video-thumb"><img src="' + getThumb(v) + '" loading="lazy">' +
-      '<div class="play-btn"><span>▶</span></div></div>' +
-      '<div class="video-title">' + v.title + '</div></div>';
-  });
-  c.innerHTML = '';
-  c.appendChild(grid);
-}
-
-function openPlayer(id, type, title) {
-  document.getElementById('player-title').textContent = title;
-  document.getElementById('player-frame').src = getEmbed({type, id});
-  document.getElementById('player').classList.add('active');
-}
-
-function closePlayer() {
-  document.getElementById('player-frame').src = '';
-  document.getElementById('player').classList.remove('active');
-}
-
-function openAdmin() { document.getElementById('admin').classList.add('active'); }
-function closeAdmin() {
-  document.getElementById('admin').classList.remove('active');
-  document.getElementById('admin-login').style.display = 'block';
-  document.getElementById('admin-panel').style.display = 'none';
-  document.getElementById('admin-pass').value = '';
-  document.getElementById('login-err').style.display = 'none';
-}
-
-function loginAdmin() {
-  const p = document.getElementById('admin-pass').value;
-  if (p === 'wallace123') {
-    document.getElementById('admin-login').style.display = 'none';
-    document.getElementById('admin-panel').style.display = 'block';
-    renderAdminList();
-  } else {
-    const e = document.getElementById('login-err');
-    e.textContent = 'Senha incorreta.';
-    e.style.display = 'block';
-  }
-}
-
-function addVideo() {
-  const url = document.getElementById('vid-url').value.trim();
-  const title = document.getElementById('vid-title').value.trim();
-  const err = document.getElementById('add-err');
-  const ok = document.getElementById('add-ok');
-  err.style.display = 'none'; ok.style.display = 'none';
-  const parsed = parseVideo(url);
-  if (!parsed) { err.textContent = 'Link inválido. Use YouTube ou Streamable.'; err.style.display = 'block'; return; }
-  if (videos.find(v => v.id === parsed.id)) { err.textContent = 'Vídeo já adicionado.'; err.style.display = 'block'; return; }
-  const category = document.getElementById('vid-category').value; videos.push({ ...parsed, title: title || 'Trabalho ' + (videos.length + 1), category: category });
-  saveVideos(); renderVideos(); renderAdminList();
-  document.getElementById('vid-url').value = '';
-  document.getElementById('vid-title').value = '';
-  ok.style.display = 'block';
-}
-
-function removeVideo(id) {
-  videos = videos.filter(v => v.id !== id);
-  saveVideos(); renderVideos(); renderAdminList();
-}
-
-function renderAdminList() {
-  const list = document.getElementById('vid-list');
-  document.getElementById('vid-count').textContent = 'Vídeos (' + videos.length + ')';
-  if (!videos.length) { list.innerHTML = '<p style="color:#444;font-size:14px;text-align:center;padding:20px">Nenhum vídeo ainda.</p>'; return; }
-  list.innerHTML = videos.map(v =>
-    '<div class="vid-item"><img src="' + getThumb(v) + '">' +
-      '<div style="flex:1"><span style="display:block">' + v.title + '</span><span style="font-size:11px;color:#c9a84c">' + (v.category || 'sem categoria') + '</span></div>' +
-      '<button class="vid-remove" onclick="removeVideo(\'' + v.id + '\')">✕</button></div>'
-  ).join('');
-}
-
-loadVideos();
-renderTabs();
-</script>
+  <a class="float" aria-label="Abrir WhatsApp" href="https://wa.me/5521982910639?text=Ol%C3%A1%2C%20Wallace.%20Vim%20pelo%20seu%20Instagram." target="_blank" rel="noopener">✆</a>
 </body>
 </html>
